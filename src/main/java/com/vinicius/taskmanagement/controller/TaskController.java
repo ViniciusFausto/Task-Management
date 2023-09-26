@@ -3,6 +3,7 @@ package com.vinicius.taskmanagement.controller;
 
 import com.vinicius.taskmanagement.application.usecaseimpl.TaskUseCaseImpl;
 import com.vinicius.taskmanagement.core.entity.Task;
+import com.vinicius.taskmanagement.core.usecase.TaskUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -19,7 +20,7 @@ import java.net.URI;
 public class TaskController {
 
     @Autowired
-    TaskUseCaseImpl taskUseCaseImpl;
+    TaskUseCase taskUseCaseImpl;
     @PostMapping
     public ResponseEntity registerTask(@RequestBody Task data){
         try {
