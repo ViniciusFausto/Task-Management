@@ -1,5 +1,5 @@
 CREATE TABLE task (
-    task_id INT IDENTITY(1,1) PRIMARY KEY,
+    ID INT IDENTITY(1,1) PRIMARY KEY,
     title NVARCHAR(255) NOT NULL,
     description NVARCHAR(MAX),
     creation_date DATETIME NOT NULL,
