@@ -4,6 +4,7 @@ package com.vinicius.taskmanagement.controller;
 import com.vinicius.taskmanagement.application.usecaseimpl.TaskUseCaseImpl;
 import com.vinicius.taskmanagement.core.entity.Task;
 import com.vinicius.taskmanagement.core.usecase.TaskUseCase;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -22,13 +23,8 @@ public class TaskController {
     @Autowired
     TaskUseCase taskUseCaseImpl;
     @PostMapping
-    public ResponseEntity registerTask(@RequestBody Task data){
-        try {
+    public ResponseEntity registerTask(@Valid @RequestBody Task data){
             taskUseCaseImpl.save(data);
-            return ResponseEntity.created(URI.create("/publicacao/" + data.getID())).build();
-        }catch (Exception ex) {
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        }
-
+            return ResponseEntity.created(URI.create("/task/" + data.getID())).build();
     }
 }

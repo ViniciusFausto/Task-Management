@@ -1,8 +1,9 @@
 package com.vinicius.taskmanagement.core.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
-import org.antlr.v4.runtime.misc.NotNull;
+
 
 import java.time.LocalDateTime;
 
@@ -19,18 +20,18 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
 
-    @NotNull
+    @NotBlank(message="Title field cannot be null or empty")
     private String title;
 
     private String description;
 
-    @NotNull
+    @NotNull(message="Creation date field cannot be null")
     private LocalDateTime creation_date;
 
-    @NotNull
+    @NotBlank(message="Status field cannot be null or empty")
     private String status;
 
-    @NotNull
+    @NotBlank(message="priority field cannot be null or empty")
     private String priority;
 
     private String assignee;
