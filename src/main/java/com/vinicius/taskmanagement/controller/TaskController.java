@@ -25,6 +25,6 @@ public class TaskController {
     @PostMapping
     public ResponseEntity registerTask(@Valid @RequestBody Task data){
             taskUseCaseImpl.save(data);
-            return ResponseEntity.created(URI.create("/task/" + data.getID())).build();
+            return ResponseEntity.status(201).body(data);
     }
 }
