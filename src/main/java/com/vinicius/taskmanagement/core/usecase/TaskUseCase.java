@@ -1,9 +1,11 @@
 package com.vinicius.taskmanagement.core.usecase;
 
 import com.vinicius.taskmanagement.core.entity.Task;
-import com.vinicius.taskmanagement.infraestructure.repository.TaskRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Optional;
 
 public interface TaskUseCase {
-    public void save(Task task);
+    void save(Task task);
+
+    Optional<Task> findById(Integer id);
 }
