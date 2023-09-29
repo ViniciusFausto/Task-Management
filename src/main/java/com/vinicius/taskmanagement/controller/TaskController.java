@@ -1,35 +1,30 @@
 package com.vinicius.taskmanagement.controller;
 
 
-import com.vinicius.taskmanagement.application.usecaseimpl.TaskUseCaseImpl;
 import com.vinicius.taskmanagement.core.entity.Task;
 import com.vinicius.taskmanagement.core.usecase.TaskUseCase;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.util.Optional;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/task")
 public class TaskController {
+    private final TaskUseCase taskUseCase;
 
-    @Autowired
-    TaskUseCase taskUseCaseImpl;
     @PostMapping
-    public ResponseEntity registerTask(@Valid @RequestBody Task data){
-            taskUseCaseImpl.save(data);
-            return ResponseEntity.status(201).body(data);
+    public ResponseEntity<Task> registerTask(@Valid @RequestBody Task data){
+        taskUseCase.save(data);
+        return ResponseEntity.status(201).body(data);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getTaskById(@Valid @PathVariable Integer id){
-
-        Optional<Task> task = taskUseCaseImpl.findById(id);
+    public ResponseEntity<Task> getTaskById(@Valid @PathVariable Integer id){
+        Optional<Task> task = taskUseCase.findById(id);
         if(task.isPresent()) {
             return ResponseEntity.ok(task.get());
         }
