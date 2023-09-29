@@ -6,6 +6,8 @@ import com.vinicius.taskmanagement.infraestructure.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class TaskUseCaseImpl implements TaskUseCase {
 
@@ -15,5 +17,10 @@ public class TaskUseCaseImpl implements TaskUseCase {
     @Override
     public void save(Task task) {
         taskRepository.save(task);
+    }
+
+    @Override
+    public Optional<Task> findById(Integer id) {
+        return taskRepository.findById(id);
     }
 }
