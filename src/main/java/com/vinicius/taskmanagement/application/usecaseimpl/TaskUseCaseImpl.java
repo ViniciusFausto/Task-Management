@@ -5,7 +5,6 @@ import com.vinicius.taskmanagement.core.usecase.TaskUseCase;
 import com.vinicius.taskmanagement.infraestructure.repository.TaskRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,23 +32,27 @@ public class TaskUseCaseImpl implements TaskUseCase {
 
     @Override
     public Task update(Integer id, Task task) {
-        Task taskSaved = taskRepository.findById(id).orElseThrow(() -> new EmptyResultDataAccessException(1));
+        Task taskSaved;
+        try {
+            taskSaved  = taskExistValidation(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         BeanUtils.copyProperties(task, taskSaved, "ID");
         return taskRepository.save(taskSaved);
     }
 
     @Override
-    public void remove(Integer id) throws Exception {
-        taskExistValidation(id);
+    public void remove(Integer id)  {
         taskRepository.deleteById(id);
     }
 
-    public void taskExistValidation(Integer id)throws Exception {
+    public Task taskExistValidation(Integer id)throws Exception {
         Optional
                 .ofNullable(id)
                 .orElseThrow(() -> new Exception() );
 
-         taskRepository.findById(id)
+        return taskRepository.findById(id)
                 .orElseThrow( () -> new Exception());
     }
 }
