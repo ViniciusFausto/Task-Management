@@ -40,6 +40,8 @@ DB_USER=admin
 DB_PASSWORD=123
 
 ```
+## Documentação da Api
+  - Com a aplicação rodando acessar a url "http://localhost:8080/swagger-ui/index.html#" para ver a documentação via Swagger UI
 
 ## 👥 Autor
   - **Vinicius Fausto**
