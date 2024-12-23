@@ -1,12 +1,12 @@
 CREATE TABLE task (
-    ID INT IDENTITY(1,1) PRIMARY KEY,
+    ID INT AUTO_INCREMENT PRIMARY KEY,
     title NVARCHAR(255) NOT NULL,
-    description NVARCHAR(MAX),
+    description LONGTEXT,
     creation_date DATETIME NOT NULL,
     status NVARCHAR(50) NOT NULL,
     priority NVARCHAR(50) NOT NULL,
     assignee NVARCHAR(255),
-    notes NVARCHAR(MAX),
+    notes LONGTEXT,
     completion_date DATETIME
 );
 
