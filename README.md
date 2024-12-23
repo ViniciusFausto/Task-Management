@@ -29,13 +29,13 @@ $ git clone https://github.com/ViniciusFausto/Task-Management.git
 
 -Renomei o arquivo env.example para env.properties
 
-DB_DATABASE= {Sua String de conexão}
+DB_DATABASE= {Nome do seu banco}
 DB_USER={Usuario do banco}
 DB_PASSWORD={Senha do banco}
 
 Exemplo
 
-DB_DATABASE=//banco.database.windows.net:1433;database=banconame;user=admin@test;password=123;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;
+DB_DATABASE=taskmanagement
 DB_USER=admin
 DB_PASSWORD=123
 
